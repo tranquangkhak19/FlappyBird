@@ -2,7 +2,8 @@ var pipe = function(game){
     this.game = game;
     this.image = null;
     this.loaded = false;
-    this.x = 0
+    this.x = 360;
+    this.y = 100;
 
     var self = this;
 
@@ -24,9 +25,11 @@ var pipe = function(game){
             return;
         }
         this.x-=4;
-        if(this.x <= -336){
-            this.x = 0;
+        if(this.x<=-80){
+            this.x = 360;
+            this.y = 100 + Math.random()*200;
         }
+        
     }
 
     this.draw = function(){
@@ -34,7 +37,7 @@ var pipe = function(game){
         if(self.loaded == false){
             return;
         }
-        this.game.context.drawImage(this.image, this.x, 400, this.x, 450);
-        this.game.context.drawImage(this.image, this.x + 336, 300, this.x + 336, 350);
+        this.game.context.drawImage(this.image, this.x, this.y, 80, -400);
+        this.game.context.drawImage(this.image, this.x, this.y + 200, 80, 400);
     }
 }

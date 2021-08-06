@@ -23,8 +23,8 @@ var base = function(game){
         if(this.game.gameOver){
             return;
         }
-        this.x-=4;
-        if(this.x <= -336){
+        this.x-=4
+        if(this.x <= -312){
             this.x = 0;
         }
     }

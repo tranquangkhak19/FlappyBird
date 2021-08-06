@@ -8,6 +8,7 @@ var bird = function(game){
     this.currentImage = null;
     this.currentFrame = 0;
 
+    this.x = 60
     this.y = 0;
     this.speedY = 0;
     this.acceleration = 1;
@@ -63,7 +64,7 @@ var bird = function(game){
             self.currentImage = self.images[1];
         }
 
-        //
+        //check game over
         if(this.y < 460){
             this.speedY += this.acceleration;
             this.y += this.speedY;
@@ -72,18 +73,28 @@ var bird = function(game){
             this.game.gameOver = true;
             this.y = 520;
         }
+
+        //check hit the pipe
+        this.checkHitPipe();
+
+    }
+
+    this.checkHitPipe = function(){
+        if(this.x > this.game.pipe.x-60 && this.x < this.game.pipe.x+80 && (this.y < this.game.pipe.y - 30 || this.y > this.game.pipe.y + 200 - 30)){
+            this.game.gameOver = true;
+        }
     }
 
     this.flap = function(){
         if(this.game.gameOver){
             return;
         }
-        this.speedY = -15;
+        this.speedY = -10;
     }
 
     this.draw = function(){
         if(this.img1loaded && this.img2loaded && this.img3loaded){
-            self.game.context.drawImage(self.currentImage, 60, this.y, 110, 110);
+            self.game.context.drawImage(self.currentImage, this.x, this.y, 110, 110);
         }
     }
 }

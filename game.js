@@ -1,7 +1,7 @@
 var game = function(){
     this.canvas = null;
     this.context = null;
-    this.width = 400;
+    this.width = 360;
     this.height = 600;
 
     this.bird = null;
